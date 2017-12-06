@@ -1,7 +1,7 @@
 %X - list of positions of white/black trains at the left side
 %R - way which was passed to get the correct permutation Y of black/white trains at the right side
 %revese_all predicate reveses path list and his elements because of popping the first(not last) train of list X
-solve(X, R):- permutation(X, Y), bw(Y), bfs(s(X, [], []), s([], [], Y), W), reverse_all(W, W1), reverse(W1, R), !.
+solve(X, R):- reverse(X, X1), permutation(X1, Y), bw(Y), bfs(s(X1, [], []), s([], [], Y), W), reverse_all(W, W1), reverse(W1, R), !.
 
 reverse_all([], []).
 reverse_all([s(X, Y, Z) | T], [s(P, Q, R) | RT]):- reverse(X, P), reverse(Y, Q), reverse(Z, R), reverse_all(T, RT).
